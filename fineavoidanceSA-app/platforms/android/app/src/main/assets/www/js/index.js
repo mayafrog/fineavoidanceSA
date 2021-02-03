@@ -41,6 +41,20 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
-};
 
+
+};
+document.getElementById("start-btn").onclick = function()
+{
+    startFunction()
+}
+function startFunction(){
+    el = document.getElementById("start-btn")
+    if(el.innerHTML == "STOP") 
+    {
+        el.innerHTML = "START" 
+    } else {
+        el.innerHTML = "STOP"
+    }
+}
 app.initialize();
