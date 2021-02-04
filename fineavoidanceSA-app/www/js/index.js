@@ -51,20 +51,13 @@ document.getElementById("start-btn").onclick = function()
     // onSuccess Callback
     // This method accepts a Position object, which contains the
     // current GPS coordinates
-    //
     var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
+        // console.log('Latitude: '          + position.coords.latitude          + '\n' +
+        //       'Longitude: '         + position.coords.longitude         + '\n');
 
-              geocodingAPI  = url("https://maps.google.com/maps/api/geocode/xml?latlng=-34.8572623,138.5294497&sensor=false&key=AIzaSyAYRYrNOgc4ELU8yV6ocL9leW2XT2rGA28")
-                alert(geocodingAPI)
-            //   AIzaSyAYRYrNOgc4ELU8yV6ocL9leW2XT2rGA28
+        const geocoder = new google.maps.Geocoder();
+
+        console.log(geocodeLatLng(geocoder,position.coords.latitude, position.coords.longitude))
     };
 
     // onError Callback receives a PositionError object
@@ -73,15 +66,30 @@ document.getElementById("start-btn").onclick = function()
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
+var watchID
 
 function startFunction(){
     el = document.getElementById("start-btn")
     if(el.innerHTML == "STOP") 
     {
+        navigator.geolocation.clearWatch(watchID);
         el.innerHTML = "START" 
+        document.getElementById("street").innerHTML = "Current Street: "
     } else {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
         el.innerHTML = "STOP"
     }
 }
+  
+function geocodeLatLng(geocoder,_lat,_lng) {
+    const latlng = {
+      lat: _lat,
+      lng: _lng,
+    };
+    geocoder.geocode({ location: latlng }, (results) => {
+        document.getElementById("street").innerHTML = "Current Street: " +
+        results[0].formatted_address;
+    });
+  }
+
 app.initialize();
