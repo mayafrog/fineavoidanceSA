@@ -48,12 +48,39 @@ document.getElementById("start-btn").onclick = function()
 {
     startFunction()
 }
+    // onSuccess Callback
+    // This method accepts a Position object, which contains the
+    // current GPS coordinates
+    //
+    var onSuccess = function(position) {
+        alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+
+              geocodingAPI  = url("https://maps.google.com/maps/api/geocode/xml?latlng=-34.8572623,138.5294497&sensor=false&key=AIzaSyAYRYrNOgc4ELU8yV6ocL9leW2XT2rGA28")
+                alert(geocodingAPI)
+            //   AIzaSyAYRYrNOgc4ELU8yV6ocL9leW2XT2rGA28
+    };
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
 function startFunction(){
     el = document.getElementById("start-btn")
     if(el.innerHTML == "STOP") 
     {
         el.innerHTML = "START" 
     } else {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
         el.innerHTML = "STOP"
     }
 }
