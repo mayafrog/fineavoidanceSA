@@ -7,11 +7,11 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "FineAvoidanceSA.io"
-    },
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "true",
+      "PACKAGE_NAME": "FineAvoidanceSA.io"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "FineAvoidanceSA.io"
     }
   },
