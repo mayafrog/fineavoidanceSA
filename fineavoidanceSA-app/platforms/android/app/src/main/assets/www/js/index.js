@@ -74,6 +74,7 @@ function startFunction(){
     {
         navigator.geolocation.clearWatch(watchID);
         el.innerHTML = "START" 
+        document.getElementById("street").innerHTML = "Current Street: "
     } else {
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
         el.innerHTML = "STOP"
