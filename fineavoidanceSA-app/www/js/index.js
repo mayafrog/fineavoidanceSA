@@ -43,35 +43,32 @@ var app = {
 };
 
 var cameraTextXML = "<mobile>"+
-"<location>BECKMAN ST, PLYMPTON</location>"+
-"<location>BIRDWOOD TCE, NORTH PLYMPTON</location>"+
-"<location>BOWKER ST, SOMERTON PARK</location>"+
-"<location>BRADLEY GR, MITCHELL PARK</location>"+
-"<location>BRIGHTON RD, SEACLIFF PARK</location>"+
-"<location>DOUGLAS ST, LOCKLEYS</location>"+
-"<location>EAST PWY, COLONEL LIGHT GARDENS</location>"+
-"<location>EASTERN PDE, GILLMAN</location>"+
-"<location>FULHAM PARK DR, LOCKLEYS</location>"+
-"<location>GRAY TCE, ROSEWATER</location>"+
-"<location>HARTLEY RD, FLINDERS PARK</location>"+
-"<location>HENLEY BEACH RD, HENLEY BEACH</location>"+
-"<location>KING GEORGE AV, SOMERTON PARK</location>"+
-"<location>MAY TCE, BROOKLYN PARK</location>"+
+"<location>AIRPORT RD, BROOKLYN PARK</location>"+
+"<location>ALEXANDRINA RD, MOUNT BARKER</location>"+
+"<location>CARLTON PDE, TORRENSVILLE</location>"+
+"<location>ECHUNGA RD, ECHUNGA</location>"+
+"<location>HAWTHORN RD, MOUNT BARKER</location>"+
+"<location>HURLING DR, MOUNT BARKER</location>"+
+"<location>JUNCTION RD, BALHANNAH</location>"+
+"<location>JUNCTION RD, LITTLEHAMPTON</location>"+
+"<location>MAIN NORTH RD, GEPPS CROSS</location>"+
+"<location>MARION RD, BROOKLYN PARK</location>"+
 "<location>MILITARY RD, HENLEY BEACH</location>"+
-"<location>MILLER ST, SEACOMBE GARDENS</location>"+
-"<location>PROSPECT RD, BLAIR ATHOL</location>"+
-"<location>RAGLAN AV, SOUTH PLYMPTON</location>"+
-"<location>SEACOMBE RD, SEACLIFF PARK</location>"+
-"<location>SIR DONALD BRADMAN DR, BROOKLYN PARK</location>"+
-"<location>SPRINGBANK RD, COLONEL LIGHT GARDENS</location>"+
-"<location>STONEHOUSE AV, CAMDEN PARK</location>"+
-"<location>STURT RD, SEACOMBE GARDENS</location>"+
+"<location>MOUNT BARKER RD, HAHNDORF</location>"+
+"<location>NAIRNE RD, WOODSIDE</location>"+
+"<location>NORTH PDE, TORRENSVILLE</location>"+
+"<location>ONKAPARINGA VALLEY RD, VERDUN</location>"+
+"<location>SEAVIEW RD, HENLEY BEACH</location>"+
+"<location>SHEOAK RD, CRAFERS WEST</location>"+
+"<location>STRATHALBYN RD, MYLOR</location>"+
 "<location>TAPLEYS HILL RD, GLENELG NORTH</location>"+
 "<location>TRIMMER PDE, SEATON</location>"+
+"<location>WAVERLEY RIDGE RD, CRAFERS WEST</location>"+
 "<location>WEBB ST, QUEENSTOWN</location>"+
+"<location>WOODSIDE RD, NAIRNE</location>"+
 "</mobile>";
 
-var mobileCameras = {};
+var mobileCameras = [];
 
 // dict[key(obj2)] = obj2;
 document.getElementById("start-btn").onclick = function()
@@ -81,7 +78,13 @@ document.getElementById("start-btn").onclick = function()
 }
 
 function readMobileCameras(){
+    parser = new DOMParser();
+    xmlText = parser.parseFromString(cameraTextXML,"text/xml");
+    locations = xmlText.getElementsByTagName("location");
 
+    for (let i = 0; i < locations.length; i++) {
+        mobileCameras.push(locations[i].childNodes[0].nodeValue);
+    }
 }
 
 var watchID
@@ -91,7 +94,6 @@ function startFunction(){
     {
         navigator.geolocation.clearWatch(watchID);
         el.innerHTML = "START" 
-        document.getElementById("street").innerHTML = "Current Street: "
     } else {
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
         el.innerHTML = "STOP"
@@ -110,16 +112,35 @@ function onError(error) {
             'message: ' + error.message + '\n');
 }
 
+var road = "";
+var suburb = "";
+
 function geocodeLatLng(geocoder,_lat,_lng) {
     const latlng = {
       lat: _lat,
       lng: _lng,
     };
+
     geocoder.geocode({ location: latlng }, (results) => {
+        if(road != results[0].address_components[1].long_name || suburb != results[0].address_components[2].long_name)
+        {
+            road = results[0].address_components[1].long_name
+            suburb = results[0].address_components[2].long_name
+            checkIfCamera(road,suburb);
+        }
+        road = results[0].address_components[1].long_name
+        suburb = results[0].address_components[2].long_name
+
         document.getElementById("street").innerHTML = "Current Street: " +
-        results[0].address_components[1].long_name + "," +results[0].address_components[2].long_name;
+        road + "," + suburb;
     });
-  }
+}
+
+function checkIfCamera(road,suburb){
+
+    // mobileCameras[0].str
+    // document.getElementById("street").innerHTML
+}
 
 app.initialize();
 
