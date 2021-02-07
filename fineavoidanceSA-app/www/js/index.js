@@ -43,29 +43,30 @@ var app = {
 };
 
 var cameraTextXML = "<mobile>"+
-"<location>AIRPORT RD, BROOKLYN PARK</location>"+
-"<location>ALEXANDRINA RD, MOUNT BARKER</location>"+
-"<location>CARLTON PDE, TORRENSVILLE</location>"+
-"<location>ECHUNGA RD, ECHUNGA</location>"+
-"<location>HAWTHORN RD, MOUNT BARKER</location>"+
-"<location>HURLING DR, MOUNT BARKER</location>"+
-"<location>JUNCTION RD, BALHANNAH</location>"+
-"<location>JUNCTION RD, LITTLEHAMPTON</location>"+
-"<location>MAIN NORTH RD, GEPPS CROSS</location>"+
-"<location>MARION RD, BROOKLYN PARK</location>"+
-"<location>MILITARY RD, HENLEY BEACH</location>"+
-"<location>MOUNT BARKER RD, HAHNDORF</location>"+
-"<location>NAIRNE RD, WOODSIDE</location>"+
-"<location>NORTH PDE, TORRENSVILLE</location>"+
-"<location>ONKAPARINGA VALLEY RD, VERDUN</location>"+
-"<location>SEAVIEW RD, HENLEY BEACH</location>"+
-"<location>SHEOAK RD, CRAFERS WEST</location>"+
-"<location>STRATHALBYN RD, MYLOR</location>"+
-"<location>TAPLEYS HILL RD, GLENELG NORTH</location>"+
-"<location>TRIMMER PDE, SEATON</location>"+
-"<location>WAVERLEY RIDGE RD, CRAFERS WEST</location>"+
-"<location>WEBB ST, QUEENSTOWN</location>"+
-"<location>WOODSIDE RD, NAIRNE</location>"+
+"<location>ANGLE VALE RD, ANGLE VALE</location>"+
+"<location>BULL CREEK RD, BULL CREEK</location>"+
+"<location>CAVAN RD, DRY CREEK</location>"+
+"<location>COVENTRY RD, DAVOREN PARK</location>"+
+"<location>ESPLANADE, PORT NOARLUNGA SOUTH</location>"+
+"<location>GALLOWAY RD, CHRISTIES BEACH</location>"+
+"<location>GULFVIEW RD, CHRISTIES BEACH</location>"+
+"<location>HALSEY RD, ELIZABETH EAST</location>"+
+"<location>HAMBLYNN RD, ELIZABETH DOWNS</location>"+
+"<location>HAYDOWN RD, ELIZABETH GROVE</location>"+
+"<location>KENIHANS RD, HAPPY VALLEY</location>"+
+"<location>MAIN SOUTH RD, OLD NOARLUNGA</location>"+
+"<location>MAIN SOUTH RD, O'HALLORAN HILL</location>"+
+"<location>MAJORS RD, O'HALLORAN HILL</location>"+
+"<location>MIDWAY RD, ELIZABETH PARK</location>"+
+"<location>OLD SOUTH RD, OLD REYNELLA</location>"+
+"<location>PARIS CREEK RD, PARIS CREEK</location>"+
+"<location>PEACHEY RD, DAVOREN PARK</location>"+
+"<location>PHILIP HWY, ELIZABETH SOUTH</location>"+
+"<location>RIVER RD, PORT NOARLUNGA</location>"+
+"<location>SALISBURY HWY, SALISBURY</location>"+
+"<location>STATES RD, MORPHETT VALE</location>"+
+"<location>WATERLOO CORNER RD, BURTON</location>"+
+"<location>WHITES RD, PARALOWIE</location>"+
 "</mobile>";
 
 var mobileCameras = [];
@@ -84,6 +85,7 @@ function readMobileCameras(){
 
     for (let i = 0; i < locations.length; i++) {
         mobileCameras.push(locations[i].childNodes[0].nodeValue);
+        // console.log(mobileCameras[i])
     }
 }
 
@@ -137,9 +139,21 @@ function geocodeLatLng(geocoder,_lat,_lng) {
 }
 
 function checkIfCamera(road,suburb){
+    var changed = false
+    for (let i = 0; i < mobileCameras.length; i++) {
+        cameraRoad = mobileCameras[i].split(", ")
+        console.log(cameraRoad[1])
+        console.log(suburb.toUpperCase())
 
-    // mobileCameras[0].str
-    // document.getElementById("street").innerHTML
+        if(road.toUpperCase() == cameraRoad[0] || suburb.toUpperCase() == cameraRoad[1]){
+            document.getElementById("statusID").innerHTML = "STATUS: " + "MOBILE CAMERA ON THIS ROAD!!!!!!"
+            changed = true
+        }
+    }
+    if(!changed)
+    {
+        document.getElementById("statusID").innerHTML = "STATUS: " + "SHOULD BE GOOD"
+    }
 }
 
 app.initialize();
