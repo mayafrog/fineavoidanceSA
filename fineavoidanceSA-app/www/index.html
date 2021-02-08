@@ -37,12 +37,13 @@
     </head>
     <body>
         <div class="app">
-            <h1>Fine Avoidance</h1>
+            <h1>FINE AVOIDANCE</h1>
+            <h3 id="statusID">STATUS:</h3>
 
-            <h3 id="street">Current Street:</h3>
+            <h3 id="street">CURRENT STREET:</h3>
 
             <div id="deviceready" class="blink">
-                <button id="start-btn">START</button>
+                <button id="start-btn" onclick="window.plugins.insomnia.keepAwake()">START</button>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>

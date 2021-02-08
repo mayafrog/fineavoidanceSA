@@ -157,4 +157,3 @@ function checkIfCamera(road,suburb){
 }
 
 app.initialize();
-
