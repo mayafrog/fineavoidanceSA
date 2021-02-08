@@ -42,33 +42,28 @@ var app = {
     }
 };
 
-var cameraTextXML = "<mobile>"+
-"<location>BECKMAN ST, PLYMPTON</location>"+
-"<location>BIRDWOOD TCE, NORTH PLYMPTON</location>"+
-"<location>BOWKER ST, SOMERTON PARK</location>"+
-"<location>BRADLEY GR, MITCHELL PARK</location>"+
-"<location>BRIGHTON RD, SEACLIFF PARK</location>"+
-"<location>DOUGLAS ST, LOCKLEYS</location>"+
-"<location>EAST PWY, COLONEL LIGHT GARDENS</location>"+
-"<location>EASTERN PDE, GILLMAN</location>"+
-"<location>FULHAM PARK DR, LOCKLEYS</location>"+
-"<location>GRAY TCE, ROSEWATER</location>"+
-"<location>HARTLEY RD, FLINDERS PARK</location>"+
-"<location>HENLEY BEACH RD, HENLEY BEACH</location>"+
-"<location>KING GEORGE AV, SOMERTON PARK</location>"+
-"<location>MAY TCE, BROOKLYN PARK</location>"+
-"<location>MILITARY RD, HENLEY BEACH</location>"+
-"<location>MILLER ST, SEACOMBE GARDENS</location>"+
-"<location>PROSPECT RD, BLAIR ATHOL</location>"+
-"<location>RAGLAN AV, SOUTH PLYMPTON</location>"+
-"<location>SEACOMBE RD, SEACLIFF PARK</location>"+
-"<location>SIR DONALD BRADMAN DR, BROOKLYN PARK</location>"+
-"<location>SPRINGBANK RD, COLONEL LIGHT GARDENS</location>"+
-"<location>STONEHOUSE AV, CAMDEN PARK</location>"+
-"<location>STURT RD, SEACOMBE GARDENS</location>"+
-"<location>TAPLEYS HILL RD, GLENELG NORTH</location>"+
-"<location>TRIMMER PDE, SEATON</location>"+
-"<location>WEBB ST, QUEENSTOWN</location>"+
+var cameraTextXML = "<mobile>"
+"<location>ADELAIDE RD, MURRAY BRIDGE</location>"+
+"<location>ANGLE VALE RD, VIRGINIA</location>"+
+"<location>ANGLE VALE RD, ANGLE VALE</location>"+
+"<location>BLACK TOP RD, ONE TREE HILL</location>"+
+"<location>CAVAN RD, DRY CREEK</location>"+
+"<location>DUKES HWY, COOMANDOOK</location>"+
+"<location>DUKES HWY, TAILEM BEND</location>"+
+"<location>LONG ISLAND RD, MURRAY BRIDGE</location>"+
+"<location>MALLEE HWY, TAILEM BEND</location>"+
+"<location>MULGUNDAWAH RD, MURRAY BRIDGE</location>"+
+"<location>NORTH SOUTH MOTORWAY, BOLIVAR</location>"+
+"<location>NORTH SOUTH MOTORWAY, DRY CREEK</location>"+
+"<location>OLD PORT WAKEFIELD RD, VIRGINIA</location>"+
+"<location>ONE TREE HILL RD, ONE TREE HILL</location>"+
+"<location>PORT WAKEFIELD RD, MAWSON LAKES</location>"+
+"<location>PRINCES HWY, TAILEM BEND</location>"+
+"<location>ST KILDA RD, ST KILDA</location>"+
+"<location>STANDEN ST, MURRAY BRIDGE</location>"+
+"<location>WATERLOO CORNER RD, BURTON</location>"+
+"<location>WATERLOO CORNER RD, PARALOWIE</location>"+
+"<location>WEST AV, EDINBURGH</location>"+
 "</mobile>";
 
 var mobileCameras = {};
