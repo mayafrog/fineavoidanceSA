@@ -10,6 +10,15 @@
     <feature name="Insomnia">
         <param name="android-package" value="nl.xservices.plugins.Insomnia" />
     </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
+    <feature name="Badge">
+        <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
+    </feature>
     <name>FineAvoidanceSA</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
