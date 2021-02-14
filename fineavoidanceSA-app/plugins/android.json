@@ -13,7 +13,20 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "FineAvoidanceSA.io"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "FineAvoidanceSA.io"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "FineAvoidanceSA.io"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "FineAvoidanceSA.io"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "FineAvoidanceSA.io"
+    }
+  }
 }

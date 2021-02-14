@@ -27,6 +27,8 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+
+        app.pluginInitialize();
     },
 
     // Update DOM on a Received Event
@@ -39,8 +41,11 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }
+    },
+
+        
 };
+app.initialize();
 
 var cameraTextXML = "<mobile>"+
 "<location>ANGLE VALE RD, ANGLE VALE</location>"+
@@ -67,6 +72,13 @@ var cameraTextXML = "<mobile>"+
 "<location>STATES RD, MORPHETT VALE</location>"+
 "<location>WATERLOO CORNER RD, BURTON</location>"+
 "<location>WHITES RD, PARALOWIE</location>"+
+"<location>WHITES RD, GRAND JUNCTION</location>"+
+"<location>PROSPECT RD, PROSPECT</location>"+
+"<location>MAIN NORTH RD, PROSPECT</location>"+
+"<location>MAIN NORTH RD, ENFIELD</location>"+
+"<location>MAIN NORTH RD, MEDINDIE GARDENS</location>"+
+"<location>STEPHEN TERRACE, GILBERTON GARDENS</location>"+
+"<location>TORRENS RD, WOODVILLE</location>"+ 
 "</mobile>";
 
 var mobileCameras = [];
@@ -85,7 +97,6 @@ function readMobileCameras(){
 
     for (let i = 0; i < locations.length; i++) {
         mobileCameras.push(locations[i].childNodes[0].nodeValue);
-        // console.log(mobileCameras[i])
     }
 }
 
@@ -96,6 +107,8 @@ function startFunction(){
     {
         navigator.geolocation.clearWatch(watchID);
         el.innerHTML = "START" 
+        document.getElementById("street").innerHTML = "Current Street: "
+        
     } else {
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
         el.innerHTML = "STOP"
@@ -142,11 +155,13 @@ function checkIfCamera(road,suburb){
     var changed = false
     for (let i = 0; i < mobileCameras.length; i++) {
         cameraRoad = mobileCameras[i].split(", ")
-        console.log(cameraRoad[1])
-        console.log(suburb.toUpperCase())
 
         if(road.toUpperCase() == cameraRoad[0] || suburb.toUpperCase() == cameraRoad[1]){
             document.getElementById("statusID").innerHTML = "STATUS: " + "MOBILE CAMERA ON THIS ROAD!!!!!!"
+            cordova.plugins.notification.local.schedule({
+                title: 'ALERTTT',
+                text: 'CAMERA ON THIS ROAD CAREFUL!',
+            });
             changed = true
         }
     }
@@ -155,6 +170,4 @@ function checkIfCamera(road,suburb){
         document.getElementById("statusID").innerHTML = "STATUS: " + "SHOULD BE GOOD"
     }
 }
-
-app.initialize();
 

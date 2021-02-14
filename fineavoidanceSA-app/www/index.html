@@ -21,29 +21,35 @@
     <head>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+            https://github.co m/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
         Some notes:
             * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
             * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <script
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD83vIxOC-JrgxAKvxLxosgudD3Ajh7_1Q"
         defer
       ></script>
         <title>Fine Avoidance SA</title>
     </head>
     <body>
         <div class="app">
-            <h1>Fine Avoidance</h1>
-
-            <h3 id="street">Current Street:</h3>
-
+            <h1>Fine Avoidance SA</h1>
             <div id="deviceready" class="blink">
-                <button id="start-btn">START</button>
+                <p class="event listening"></p>
+                <p class="event received"></p>
             </div>
+            <h3 id="statusID">STATUS:</h3>
+
+            <h3 id="street">CURRENT STREET:</h3>
+
+            <button id="start-btn">START</button>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
