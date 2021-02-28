@@ -21,18 +21,18 @@ for location in locations:
     if location not in clean:
         clean.append(location)
 
-with open("locations.txt", "w") as output:
+with open("/mnt/c/Users/Nhan1/Dropbox/Projects/locations.txt", "w") as output:
     for location in clean:
         output.write(str(location.contents[0]+"\n"))
 
-xml_out_DD = open("locations.xml", 'wb')
+xml_out_DD = open("/mnt/c/Users/Nhan1/Dropbox/Projects/locations.xml", 'wb')
 xml_out_DD.write(bytes('<mobile>', 'utf-8'))
 for i in range(0, len(clean)):
     xml_out_DD.write(bytes('<location>'  + clean[i].contents[0] + '</location>', 'utf-8'))
 xml_out_DD.write(bytes('</mobile>', 'utf-8'))
 xml_out_DD.close()
 
-with open('locations.json', 'w') as output:
+with open('/mnt/c/Users/Nhan1/Dropbox/Projects/locations.json', 'w') as output:
     for location in clean:
         json.dump(location.contents[0], output, separators=(", ", ": "))
 
